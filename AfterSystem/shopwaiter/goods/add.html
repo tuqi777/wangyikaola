@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+</head>
+<body class="frameright">
+	<div>位置：后台 &gt; 商品中心 &gt; 添加</div>
+	<div class="box">
+		<form>
+			商品名称：<br>
+			<input type="text" id="name" /><br><br>
+			商品图片：<br>
+			<input type="file" id="pic" /><br><br>
+			商品描述：<br>
+			<div id="editor"></div>
+			商品单价：<br>
+			<input type="text" id="price" /><br><br>
+			<input type="submit" value="添加商品">
+		</form>
+	</div>
+	<div id="loading"><img src=""/></div> -->
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.min.js"></script>
+<script type="text/javascript">
+var E = window.wangEditor
+var editor = new E('#editor')
+editor.customConfig.uploadImgMaxSize = 30 * 1024 * 1024;
+editor.customConfig.uploadImgServer = '/goods_add';
+editor.customConfig.uploadFileName = 'img';
+editor.create()
+$("form").on("submit", function(e){
+	e.preventDefault()
+	$("#loading").fadeIn()
+	$("#editor").hide()
+	//alert(editor.txt.html())
+	var fd = new FormData();
+	fd.append("name", $("#name").val());
+	fd.append("pic", pic.files[0]);	
+	fd.append("content", editor.txt.html());
+	fd.append("price", $("#price").val());
+
+	$.ajax({
+		url : "/goods_add",
+		data : fd,
+		type : "post",
+		success : function(result){
+			console.log(result)
+			setTimeout(function(){
+				$("#editor").show()
+				$("#loading").fadeOut()
+			}, 2000)
+		},
+		contentType: false,
+		processData: false
+	})	
+})
+</script>

@@ -1,0 +1,428 @@
+@charset "utf-8";
+*{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+body,html{
+    width: 100%;
+    height: 100%;
+    font-family: "微软雅黑"；
+}
+#header{
+    width: 100%;
+    height: 100px;
+    .top{
+        width: 1000px;
+        height: 100%;
+        background: white;
+        margin:  0 auto;
+        vertical-align: middle;
+        position: relative;
+        a{
+            position: absolute;
+            left: 0;
+            top:20px;
+            display: inline-block;
+            width: 330px;
+            height: 65px;
+            img{
+                width: 60%;
+                height: 100%;
+            }
+        }
+        #topimg{
+            float: right;
+        }
+    }
+}
+.section{
+    width: 100%;
+    height: 520px;
+    background: url(../../img/login.jpg) no-repeat;
+    background-size: cover;
+    .sectionwrap{
+        width: 1000px;
+        height: 100%;
+        margin:  0 auto;
+        position: relative;
+        .regbox{
+            width: 350px;
+            height: 388px;
+            background: white;
+            position: absolute;
+            top:66px;
+            right:0;
+            .regform{
+                width: 100%;
+                height: 388px;
+                .regboxtop{
+                    width: 100%;
+                    height:15%;
+                    line-height: 58px;
+                    border-bottom:1px solid #dddddd;
+                    .text{
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: red;
+                        margin-left: 30px;
+                        margin-right: 90px;
+                    }
+                    .loginbox{
+                        font-size: 12px;
+                        a{
+                            color:#51b8f1;
+                        }
+                    }
+                }
+                .regboxdown{
+                    width: 100%;
+                    height: 85%;
+                    color:#ddd;
+                    overflow: hidden;
+                    position: relative;
+                    .inputbox{
+                        width: 80%;
+                        height: 38px;
+                        border: 1px solid #dddddd;
+                        border-radius: 3px;
+                        margin: 30px auto;
+                        vertical-align: middle;
+                        line-height: 38px;
+                        .iconfont{
+                            margin: 0 7px;
+                        }
+                        .phonetext{
+                            border: none;
+                            outline: none;
+                            
+                        }
+                    }
+                    .phonenumtext,.yanzhengtext,.passtext{
+                        width: 80%;
+                        height: 15px;
+                        font-size: 10px;
+                        color:red;
+                        letter-spacing: 1px;
+                        display: none;
+                        position: absolute;
+                        left:50px;
+                        top:80px;
+                    }
+                    .yanzhengma{
+                        width: 80%;
+                        height: 38px;
+                        border: 1px solid #dddddd;
+                        border-radius: 3px;
+                        margin: 30px auto;
+                        vertical-align: middle;
+                        line-height: 38px;
+                        .yanzhengmatext{
+                            margin-left: 7px;
+                            border: none;
+                            outline: none;
+                            
+                        }
+                        #yanzhengmabutton{
+                            height: 100%;
+                            background: url(../../img/1.png);
+                            width: 100px;
+                            font-size: 20px;
+                            float: right;
+                            border: none;
+                            outline: none;
+                            cursor: pointer;
+                            color: yellowgreen;
+                            letter-spacing: 13px;
+                        }
+                    }
+                    .yanzhengtext{
+                        position: absolute;
+                            left:50px;
+                            top:148px;
+                           
+                    }
+                    .passtext{
+                        position: absolute;
+                            left:50px;
+                            top:220px; 
+                            color:green;
+                    }
+                    .pswbox{
+                        width: 80%;
+                        height: 38px;
+                        border: 1px solid #dddddd;
+                        border-radius: 3px;
+                        margin: 30px auto;
+                        vertical-align: middle;
+                        line-height: 38px;
+                        .iconfont{
+                            margin: 0 7px;
+                        }
+                        .passbox{
+                            border: none;
+                            outline: none;
+                        }
+                    }
+                    .register_button{
+                        width: 80%;
+                        height: 36px;
+                        background: #e31436;
+                        margin: 0 10%;
+                        color: white;
+                        border: none;
+                        border-radius: 2px;
+                        line-height: 36px;
+                        font-size: 14px;
+                        letter-spacing: 4px;
+                        cursor: pointer;
+                    }
+                    .bangyaozhang{
+                        width: 80%;
+                        height: 24px;
+                        margin:8px 10%;
+                        font-size: 12px;
+                        line-height: 24px;
+                        vertical-align: middle;
+                        #zhaoxiaojie{
+                            display: inline-block;
+                            width: 14px;
+                            height: 14px;
+                            border: 3px solid #aaa;
+                            font-size: 12px;
+                            line-height: 24px;
+                            color: greenyellow;
+                            cursor: pointer;
+                            background: url(../../public/Common/img/tubiao.png) no-repeat;
+                            background-position:-331px -96px;
+                            // opacity: ;
+                        }
+                        .five_hunder_onenight{
+                            color:#999999;
+                            a{
+                                color:#999999;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            .regformlogin{
+                width: 100%;
+                height: 388px;
+                display: none;
+                .regboxtop-login{
+                    width: 100%;
+                    height:15%;
+                    line-height: 58px;
+                    background: #f8f8f8;
+                    position: relative;
+                    border-bottom:1px solid #dddddd;
+                    span{
+                        display:block;
+                        float: left;
+                        width: 174px;
+                        height: 100%;
+                        text-align: center;
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: #333;
+                        cursor: pointer;
+                    }
+                    :hover{
+                        color:red;
+                    }
+                    b{
+                        display: block;
+                        width: 0;
+                        height: 20px;
+                        border-right: 1px solid #ddd;
+                        position: absolute;
+                        top:19px;
+                        left:175px;
+                    }
+                }
+                .regboxdown-login{
+                    width: 100%;
+                    height: 85%;
+                    color:#ddd;
+                    overflow: hidden;
+                    .phonenumtext-login,.yanzhengtext-login,.passtext-login{
+                        width: 80%;
+                        height: 15px;
+                        font-size: 10px;
+                        color:red;
+                        letter-spacing: 1px;
+                        display: none;
+                        position: absolute;
+                        left:50px;
+                        top:80px;
+                    }
+                    .inputbox-login{
+                        width: 80%;
+                        height: 38px;
+                        border: 1px solid #dddddd;
+                        border-radius: 3px;
+                        margin: 30px auto;
+                        vertical-align: middle;
+                        line-height: 38px;
+                        .iconfont-login{
+                            margin: 0 7px;
+                        }
+                        .phonetext-login{
+                            border: none;
+                            outline: none;
+                        }
+                    }
+                    .phonenumtext-login,.yanzhengtext-login,.passtext-login{
+                        width: 80%;
+                        height: 15px;
+                        font-size: 10px;
+                        margin: 0 auto;
+                        color: green;
+                        letter-spacing: 1px;
+                        display: none;
+                    }
+                    .yanzhengma-login{
+                        width: 80%;
+                        height: 38px;
+                        border: 1px solid #dddddd;
+                        border-radius: 3px;
+                        margin: 30px auto;
+                        vertical-align: middle;
+                        line-height: 38px;
+                        .yanzhengmatext-login{
+                            margin-left: 7px;
+                            border: none;
+                            outline: none;
+                        }
+                        .yanzhengmabutton-login{   
+                            height: 100%;
+                            background: url(../img/1.png);
+                            width: 100px;
+                            font-size: 20px;
+                            float: right;
+                            border: none;
+                            outline: none;
+                            cursor: pointer;
+                            color: yellowgreen;
+                            letter-spacing: 13px;    
+                        }
+                    }
+                    .pswbox-login{
+                        width: 80%;
+                        height: 38px;
+                        border: 1px solid #dddddd;
+                        border-radius: 3px;
+                        margin: 30px auto;
+                        vertical-align: middle;
+                        line-height: 38px;
+                        .iconfont-login{
+                            margin: 0 7px;
+                        }
+                        .passbox-login{
+                            border: none;
+                            outline: none;
+                        }
+                    }
+                    .register_button-login{
+                        width: 80%;
+                        height: 36px;
+                        background: #e31436;
+                        margin: 0 10%;
+                        color: white;
+                        border: none;
+                        border-radius: 2px;
+                        line-height: 36px;
+                        font-size: 14px;
+                        letter-spacing: 4px;
+                    }
+                    .bangyaozhang-login{
+                        width: 80%;
+                        height: 24px;
+                        margin:8px 10%;
+                        font-size: 12px;
+                        line-height: 24px;
+                        vertical-align: middle;
+                        #zhaoxiaojie-login{
+                            display: inline-block;
+                            width: 14px;
+                            height: 14px;
+                            border: 3px solid #aaa;
+                            font-size: 12px;
+                            margin-top: 5px;
+                            color: greenyellow;
+                            cursor: pointer;
+                            background: url(../../public/Common/img/tubiao.png) no-repeat;
+                            background-position:-331px -96px;
+                            // opacity: ;
+                        }
+                        .five_hunder_onenight-login{
+                        
+                            color:#999999;
+                            margin-left: 5px;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    
+}
+footer{
+    text-align: center;
+    width: 100%;
+    height:120px;
+    font-size: 13px;
+    margin-top: 20px;
+    a{
+        color:#999999;
+    }
+    :hover{
+        color:#c2c2c2;
+    }
+    .first{
+        width: 1000px;
+        height: 20px;
+        margin:0 auto ;
+        ul{
+        margin-left:100px;
+        li{
+            float: left;
+            padding: 0 15px ;
+            border-right: 1px solid #667eb5; 
+            a{
+                color:#666666;
+            } 
+        }
+        }
+    }
+    .secblup{
+        margin: 10px auto;
+        p{
+            display: inline;
+            margin-right: 15px;
+        }
+    }
+    .thirblup{
+        margin: 10px auto;
+        p{
+            display: inline;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+    }
+    .four{
+        img{
+            display: inline-block;
+            height: 30px;
+            margin-right:15px; 
+        }
+    }
+}

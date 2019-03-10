@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        用户名：<input type="text" name="username" id="username"><br><br>
+        密  码：<input type="password" name="password" id="password"><br><br>
+        <input type="submit" value="注册"><br><br>
+    </form>
+</body>
+</html>
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<script>
+    $("form").on("submit",function(){
+    
+        var uuu=$("#username").val();
+        var ppp=$("#password").val();
+        $.get(
+            "/uu_reg?user="+uuu+"&pass="+ppp,
+            function(result){
+                console.log(result.state)
+                if (result.state===1) {
+                    alert("注册成功")
+                    location.href="shopwaiter/login.html"
+                } else {
+                    alert("注册失败：用户名被占用！")
+                }
+            }
+        )
+        return false;
+    })
+</script>

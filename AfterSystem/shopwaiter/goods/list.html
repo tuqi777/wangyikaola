@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+</head>
+<body class="frameright">
+	<div>位置：后台 &gt; 商品中心 &gt; 列表</div>
+	<div class="search right">
+		<input type="button" value="添加商品" />
+	</div>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<td>编号</td>
+					<td>商品图片</td>
+					<td>商品名称</td>
+					<td>商品单价</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="5"></td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$("input[value='添加商品']").click(function(){
+	location.href = "add.html";
+})	
+</script>

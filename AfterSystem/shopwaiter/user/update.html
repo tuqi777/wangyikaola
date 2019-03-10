@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../style/default.css"/>
+</head>
+<body class="frameright">
+	<div>位置：后台 &gt; 用户中心 &gt; 修改</div>
+	<div class="box">
+		用户名：<br>
+		<input type="text" id="username" /><br><br>
+		密码：<br>
+		<input type="text" id="password" /><br><br>
+		<input type="button" value="确认修改" id="btn">
+	</div>
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+		 alert(location.search)   //   "?id=**********"
+		$.get("/user_info"+location.search, function(result){
+			console.log(result)
+			$("#username").val(result[0].username)
+		}, "json"); 
+		
+		$("#btn").on('click', function(){
+			$.get("/user_update"+location.search+"&username="+$("#username").val()+"&password="+$("#password").val(), function(result){
+				alert(result.msg)
+				location.href="list.html"
+			});
+		})
+	</script>
+</body>
+</html>

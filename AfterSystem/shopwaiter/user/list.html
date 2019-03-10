@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+</head>
+<body class="frameright">
+	<div>位置：后台 &gt; 用户中心 &gt; 列表</div>
+	<div class="search">
+		<li><input type="text" /></li>
+		<li><input type="button" value="搜索" /></li>	
+		<li>
+			<label>全选<input type="checkbox" id="cball" /></label>
+			<input type="button" value="批量删除" id="alldel"/>
+		</li>	
+	</div>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<td>编号</td>
+					<td>用户名称</td>
+					<td>最后登录的IP</td>
+					<td>最后登录的时间</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="5"></td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	var page=1,
+		maxpage,
+		wd="";
+function handle(){
+	$.get("/user_list/"+page+"/10?wd="+wd,function(result){
+		var arr=result.result;
+		maxpage=result.maxpage;		
+		var tbody=$("tbody");
+		var tfoot=$("tfoot td")
+		tbody.html("");
+		arr.forEach(function(obj){
+			tbody.append(`  
+				<tr>
+					<td><input type="checkbox" value="${obj._id}"></td>
+					<td>${obj.username}</td>
+					<td>${obj.ip}</td>
+					<td>${obj.time}</td>
+					<td>
+						<a>详情</a>
+						<a>修改</a>
+						<a>删除</a>
+					</td>
+				</tr>
+			`)
+		
+		});
+		tfoot.html(`
+			${result.page+"/"+result.maxpage}
+			<input type="button" value="首页">
+			<input type="button" value="上一页">
+			<input type="button" value="下一页">
+			<input type="button" value="末页">
+		`);
+	})
+}
+handle();
+	var tfoot=$("tfoot td");
+	tfoot.delegate('input','click',function(e){
+		e=e.target;
+		switch(e.value){
+			case "首页":
+			alert(1)
+				page=1;
+				break;
+			case "上一页":
+			alert(2)
+				page--;
+				if(page<1)page=1
+				break;
+			case "下一页":
+			alert(3)
+				page++
+				break;
+			case "末页":
+			alert(4)
+				page=maxpage;
+				if(page>maxpage)page=maxpage;
+				break;		
+		}
+		handle();
+	})
+$(".search input[value='搜索']").on('click',function(){
+	wd=$(".search input[type='text']").val();
+	handle();
+})
+$("tbody").on("click","a",function(e){
+	var tr = $(this).parent().parent();
+	var id = tr.find("input").val();
+	switch(e.target.innerHTML){
+		case "删除":
+			var bln=confirm("您确定删除该数据吗？")
+			if(bln){
+				$.get("/user_del?id="+id,function(result){
+					alert(result) 
+					tr.remove();
+					
+				})
+			}
+		case "修改":
+			location.href="update.html?id="+id
+			}
+	})
+//全选
+$("#cball").click(function(){
+	//$("td input[type=checkbox]").prop("checked",true);
+	$("td input[type=checkbox]").prop("checked",this.checked)
+})
+$("#alldel").click(function(){
+	var str=Array.from($("td input:checked").map(function(ind,el){
+		return el.value;
+	})).join(",");
+	if (confirm("您确定要删除吗？")) {
+		$.post("/user_del",{"ids":str},function(result){
+		$("tr:has(input:checked)").remove()
+		handle();
+	})
+	}
+	
+})
+
+</script>
+<!-- <script>
+var page = 1;
+var maxPage;
+var wd = "";
+	
+function handle(){
+	$.get("/user_list/"+page+"/10?wd="+wd, function(result){
+		var arr = result.data;  // 当前页面的详细数据
+		maxPage = result.maxPage;  // 共有多少页,最大页码
+		var tbody = $("tbody");
+		var tfoot = $("tfoot td");
+		tbody.html("");// 先清除内容
+		arr.forEach(function(obj){
+			tbody.append(`
+				<tr>
+					<td><input type="checkbox" value="${obj._id}"></td>
+					<td>${obj.username}</td>
+					<td>${obj.ip}</td>
+					<td>${obj.time}</td>
+					<td>
+						<a>详情</a>
+						<a>修改</a>
+						<a>删除</a>
+					</td>
+				</tr>
+			`)
+		});
+		// 翻页功能
+		tfoot.html(`
+			${page+"/"+maxPage}
+			<input type="button" value="首页">
+			<input type="button" value="上一页">
+			<input type="button" value="下一页">
+			<input type="button" value="末页">
+		`);
+	
+	}, "JSON")
+}	
+	
+handle();
+
+var tfoot = $("tfoot td");
+tfoot.on('click', 'input', function(e){
+	switch(e.target.value){
+		case "首页":
+			page = 1;
+			break;
+		case "上一页":
+			page--;
+			if(page<1){
+				page=1;
+			}
+			break;	
+		case "下一页":
+			page++;
+			if(page>maxPage){
+				page=maxPage;
+			}
+			break;	
+		case "末页":
+			page = maxPage;
+			break;	
+	}
+	handle();
+})
+
+
+// 搜索功能
+$(".search input[value='搜索']").on("click", function(){
+	wd = $(".search input[type='text']").val();
+	handle();
+})
+
+// 删除
+$("tbody").on("click", "a", function(e){
+	var tr = $(this).parent().parent();
+	var id = tr.find("input").val();
+	
+	switch(e.target.innerHTML){
+		case "删除":
+			var bln = confirm("您确定删除该数据吗？");
+			if( bln ){
+				$.get("/user_del?id="+id, function(result){
+					tr.remove();
+				} )
+			}
+			break;
+		case "修改":
+			location.href = "update.html?id="+id;
+	}
+})
+
+// 全选
+$("#cball").click(function(){
+	$("td input[type=checkbox]").prop("checked", this.checked)
+})
+$("input[value='批量删除']").click(function(){
+	// 获取哪些信息被选中了
+	var str = Array.from($("td input:checked").map(function(ind, el){
+		return el.value
+	})).join(",");
+	//console.log(str)
+	// 发起请求，进行删除
+	$.post("/user_del", {"ids":str}, function(result){
+		$("tr:has(input:checked)").remove();
+	} )
+})
+</script> -->

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="css/default.css"/>
+</head>
+<body class="frameleft">
+	<ul>
+		<li><a href="user/list.html" target="right">会员系统</a></li>
+		<li><a href="goods/list.html" target="right">商品系统</a></li>
+		<li><a href="order/list.html" target="right">订单系统</a></li>
+		<li class="checked"><a href="person/list.html" target="right">个人信息</a></li>
+	</ul>
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+	$("li").on("click", function(){
+		$("li").removeClass("checked").eq($(this).index()).addClass("checked");
+	})	
+	</script>
+</body>
+</html>
